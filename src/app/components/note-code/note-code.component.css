@@ -1,0 +1,30 @@
+* {
+  font-family: Outfit, sans-serif;
+}
+
+main {
+  background-color: #9E6DEF;
+  min-height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+
+section {
+  width: 80%;
+  border-radius: 10px;
+  padding: 24px 0;
+  background-color: white;
+}
+
+.editor-wrap {
+  height: 500px;
+}
+
+select {
+}

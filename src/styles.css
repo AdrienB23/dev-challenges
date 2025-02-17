@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+/* Fonts */
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('assets/fonts/Outfit/Outfit-VariableFont_wght.ttf');
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
