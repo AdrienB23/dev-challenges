@@ -1,8 +1,12 @@
 <main>
-  <div class="container" style="background-image: url('assets/images/note-code/Hero-Background-notecode.svg')">
-    <img src="assets/images/note-code/NoteCodeLogo.svg" alt="test">
-    <h1>Create & Share</h1>
-    <h2>Your Code easily</h2>
+  <div class="main-container" style="background-image: url('assets/images/note-code/Hero-Background-notecode.svg')">
+    <header>
+      <img src="assets/images/note-code/NoteCodeLogo.svg" alt="test">
+      <div class="title-container">
+        <h1>Create & Share</h1>
+        <h2>Your Code easily</h2>
+      </div>
+    </header>
     <section>
       <div class="editor-wrap">
         <ngx-monaco-editor
@@ -13,23 +17,22 @@
       </div>
       <div class="footer-container">
         <div class="theme-container">
-            <p-select
-              [(ngModel)]="selectedLanguage"
+          <div class="select-container">
+            <p-dropdown
               [options]="languages"
-              optionLabel="language"
-              optionValue="value"/>
-<!--              <option>HTML</option>-->
-<!--              <option>CSS</option>-->
-<!--              <option>JS</option>-->
-<!--            </select>-->
-<!--            <img src="assets/images/note-code/down%20arrow.svg" alt="Arrow">-->
-          <button>
-            <select >
-              <option>Light</option>
-              <option>Dark</option>
+              [(ngModel)]="selectedLanguage"
+              placeholder="Select a language"
+              optionLabel="label"
+              optionValue="value"
+              class="w-full md:w-56"
+              [showClear]="true"
+            />
+          </div>
+          <div class="select-container">
+            <select>
+              <option *ngFor="let theme of themes" [value]="theme.value">{{theme.label}}</option>
             </select>
-            <img src="assets/images/note-code/down%20arrow.svg" alt="Arrow">
-          </button>
+          </div>
         </div>
         <div class="share-container">
           <button><img src="assets/images/note-code/Share.svg" alt="Share Logo">Share</button>

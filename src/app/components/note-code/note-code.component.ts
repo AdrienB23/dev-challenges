@@ -8,12 +8,16 @@ import {Component, OnInit} from '@angular/core';
 })
 export class NoteCodeComponent implements OnInit {
   languages = [
-    {language: "HTML", value: "html" },
-    {language: "CSS", value: "css" },
-    {language: "JS", value: "js" },
+    {label: "HTML", value: "html" },
+    {label: "CSS", value: "css" },
+    {label: "JS", value: "js" },
+  ]
+  themes = [
+    {label: "Light", value: "light"},
+    {label: "Dark", value: "dark"}
   ]
 
-  selectedLanguage = this.languages[0];
+  selectedLanguage!: string;
 
   editorOptions = {
     language: 'html'
@@ -38,7 +42,7 @@ export class NoteCodeComponent implements OnInit {
 </html>`;
 
   ngOnInit() {
-    this.selectedLanguage = this.languages[0];
+    this.selectedLanguage = this.languages[0].value;
   }
 
 }

@@ -10,7 +10,7 @@ import { NoteCodeComponent } from './components/note-code/note-code.component';
 import { HomeComponent } from './components/home/home.component';
 import {EditorComponent, provideMonacoEditor} from 'ngx-monaco-editor-v2';
 import {FormsModule} from '@angular/forms';
-import {Select, SelectModule} from "primeng/select";
+import {SelectModule} from "primeng/select";
 import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
@@ -35,6 +35,6 @@ import {DropdownModule} from 'primeng/dropdown';
     provideRouter(routes, withHashLocation()),
     provideMonacoEditor()
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, NoteCodeComponent]
 })
 export class AppModule { }
