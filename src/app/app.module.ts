@@ -14,6 +14,7 @@ import {OverlayModule} from 'primeng/overlay';
 import {Button} from 'primeng/button';
 import {BrowserAnimationsModule, provideAnimations} from '@angular/platform-browser/animations';
 import {DropdownModule} from 'primeng/dropdown';
+import {SelectModule} from 'primeng/select';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import {DropdownModule} from 'primeng/dropdown';
     FormsModule,
     OverlayModule,
     Button,
+    SelectModule,
     DropdownModule,
     BrowserAnimationsModule,
   ],

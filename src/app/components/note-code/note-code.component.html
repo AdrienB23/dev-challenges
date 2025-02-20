@@ -18,21 +18,15 @@
       <div class="footer-container">
         <div class="theme-container">
           <div class="select-container">
-            <p-button (click)="toggle('language')" [label]="selectedLanguage.label"></p-button>
-            <p-overlay [(visible)]="overlaysVisibility.language"  >
-              <ng-template #content let-option>
-                <div class="options-container">
-                  <p-button *ngFor="let language of languages" [label]="language.label"></p-button>
-                </div>
-              </ng-template>
-            </p-overlay>
-<!--            <p-overlay [(visible)]="overlaysVisibility.language" [mode]="'overlay'" >-->
+            <p-select [options]="languages" [(ngModel)]="selectedLanguage" optionLabel="label" optionValue="value"/>
+<!--            <p-button (click)="toggle('language')" [label]="selectedLanguage.label"></p-button>-->
+<!--            <p-overlay [(visible)]="overlaysVisibility.language"  >-->
 <!--              <ng-template #content let-option>-->
-<!--                Content - {{option.mode}}-->
+<!--                <div class="options-container">-->
+<!--                  <p-button *ngFor="let language of languages" [label]="language.label"></p-button>-->
+<!--                </div>-->
 <!--              </ng-template>-->
-<!--              <p-button *ngFor="let language of languages" [label]="language.label"></p-button>-->
 <!--            </p-overlay>-->
-<!--            <p-button (click)="toggle('language')" [label]="selectedLanguage"></p-button>-->
           </div>
           <div class="select-container">
             <select>

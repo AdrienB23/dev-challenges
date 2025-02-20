@@ -1,7 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
-
 main {
-  font-family: "Outfit", serif;
+  font-family: "Outfit", sans-serif;
   font-weight: 600;
   line-height: 0;
   background-color: #9E6DEF;
