@@ -10,7 +10,9 @@ import { NoteCodeComponent } from './components/note-code/note-code.component';
 import { HomeComponent } from './components/home/home.component';
 import {EditorComponent, provideMonacoEditor} from 'ngx-monaco-editor-v2';
 import {FormsModule} from '@angular/forms';
-import {SelectModule} from "primeng/select";
+import {OverlayModule} from 'primeng/overlay';
+import {Button} from 'primeng/button';
+import {BrowserAnimationsModule, provideAnimations} from '@angular/platform-browser/animations';
 import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
@@ -28,12 +30,15 @@ import {DropdownModule} from 'primeng/dropdown';
     RouterModule.forRoot(routes),
     EditorComponent,
     FormsModule,
+    OverlayModule,
+    Button,
     DropdownModule,
-    SelectModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     provideRouter(routes, withHashLocation()),
-    provideMonacoEditor()
+    provideMonacoEditor(),
+    provideAnimations(),
   ],
   bootstrap: [AppComponent, NoteCodeComponent]
 })

@@ -17,10 +17,15 @@ export class NoteCodeComponent implements OnInit {
     {label: "Dark", value: "dark"}
   ]
 
-  selectedLanguage!: string;
+  selectedLanguage = {label: "HTML", value: "html"};
+
+  overlaysVisibility = {
+    language: false,
+    theme: false,
+  }
 
   editorOptions = {
-    language: 'html'
+    language: this.selectedLanguage.value
   };
   code = `<html lang="en">
   <head>
@@ -42,7 +47,13 @@ export class NoteCodeComponent implements OnInit {
 </html>`;
 
   ngOnInit() {
-    this.selectedLanguage = this.languages[0].value;
+  }
+
+  toggle(type: string) {
+    if (type === "language") {
+      this.overlaysVisibility.language = true;
+    }
+    console.log(this.overlaysVisibility);
   }
 
 }

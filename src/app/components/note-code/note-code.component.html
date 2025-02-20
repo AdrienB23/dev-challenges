@@ -12,21 +12,27 @@
         <ngx-monaco-editor
           style="height: 100%"
           [options]="editorOptions"
-          [(ngModel)]="code">
-        </ngx-monaco-editor>
+          [(ngModel)]="code"
+        />
       </div>
       <div class="footer-container">
         <div class="theme-container">
           <div class="select-container">
-            <p-dropdown
-              [options]="languages"
-              [(ngModel)]="selectedLanguage"
-              placeholder="Select a language"
-              optionLabel="label"
-              optionValue="value"
-              class="w-full md:w-56"
-              [showClear]="true"
-            />
+            <p-button (click)="toggle('language')" [label]="selectedLanguage.label"></p-button>
+            <p-overlay [(visible)]="overlaysVisibility.language"  >
+              <ng-template #content let-option>
+                <div class="options-container">
+                  <p-button *ngFor="let language of languages" [label]="language.label"></p-button>
+                </div>
+              </ng-template>
+            </p-overlay>
+<!--            <p-overlay [(visible)]="overlaysVisibility.language" [mode]="'overlay'" >-->
+<!--              <ng-template #content let-option>-->
+<!--                Content - {{option.mode}}-->
+<!--              </ng-template>-->
+<!--              <p-button *ngFor="let language of languages" [label]="language.label"></p-button>-->
+<!--            </p-overlay>-->
+<!--            <p-button (click)="toggle('language')" [label]="selectedLanguage"></p-button>-->
           </div>
           <div class="select-container">
             <select>
