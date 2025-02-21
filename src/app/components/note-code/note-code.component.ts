@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import * as monaco from 'monaco-editor';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-note-code',
@@ -23,7 +23,6 @@ export class NoteCodeComponent implements OnInit {
     {label: "HC Black", value: "hc-black"},
     {label: "HC Light", value: "hc-light"},
   ]
-
   selectedLanguage = this.languages[0];
   selectedTheme = this.themes[0];
 
@@ -31,13 +30,14 @@ export class NoteCodeComponent implements OnInit {
     language: false,
     theme: false,
   }
-
   editorOptions = {
     language: this.selectedLanguage.value,
     theme: this.selectedTheme.value,
   };
 
   shared=false;
+  id="";
+  copySuccess = false;
 
   code = `<html lang="en">
   <head>
@@ -58,8 +58,19 @@ export class NoteCodeComponent implements OnInit {
   </body>
 </html>`;
 
+  constructor(private route: ActivatedRoute, private router: Router) {}
+
   ngOnInit() {
-    monaco.editor.setTheme(this.selectedTheme.value);
+    this.route.paramMap.subscribe(params => {
+      let paramId = params.get('id');
+      if (paramId) {
+        this.id = paramId
+      }
+      if (this.id) {
+        this.shared = true;
+        this.loadCode(this.id);
+      }
+    });
   }
 
   onEditorInit(editorInstance: any) {
@@ -73,17 +84,64 @@ export class NoteCodeComponent implements OnInit {
     else if (type === "theme") {
       this.overlaysVisibility.theme = true;
     }
-    console.log(this.overlaysVisibility);
   }
 
   shareCode() {
+    this.id = this.generateRandomId();
     this.shared = true;
+    this.router.navigate(['home/note-code', this.id]);
+    this.saveCode(this.id, this.code);
   }
 
-  updateTheme(theme: string) {
-    this.selectedTheme = this.themes.find(t => t.value === theme) || this.themes[0];
-    if (this.editor) {
-      this.editor.updateOptions({ theme }); // Met à jour le thème dynamiquement
+  saveCode(id: string, code: string) {
+    localStorage.setItem(`code_${id}`, code);
+    localStorage.setItem(`language_${id}`, this.selectedLanguage.value);
+    localStorage.setItem(`theme_${id}`, this.selectedTheme.value);
+  }
+
+  loadCode(id: string) {
+    const savedCode = localStorage.getItem(`code_${id}`);
+    const savedLanguage = localStorage.getItem(`language_${id}`);
+    const savedTheme = localStorage.getItem(`theme_${id}`);
+    if (savedCode && savedLanguage && savedTheme) {
+      this.code = savedCode;
+      this.update('language', savedLanguage);
+      this.update('theme', savedTheme);
     }
+  }
+
+  update(type: string, value: string) {
+    if (type === 'language') {
+      this.selectedLanguage = this.languages.find(t => t.value === value) || this.languages[0];
+      this.overlaysVisibility.language = false;
+    }
+    else if (type === 'theme') {
+      this.selectedTheme = this.themes.find(t => t.value === value) || this.themes[0];
+      this.overlaysVisibility.theme = false;
+    }
+    this.editorOptions = {
+      language: this.selectedLanguage.value,
+      theme: this.selectedTheme.value,
+    };
+  }
+
+  generateRandomId(): string {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const array = new Uint8Array(10);
+    crypto.getRandomValues(array);
+    return Array.from(array, (byte) => chars[byte % chars.length]).join('');
+  }
+
+  copyToClipboard() {
+    const url = `${window.location.origin}/#/home/note-code/${this.id}`;
+    navigator.clipboard.writeText(url).then(() => {
+      this.copySuccess = true;
+      setTimeout(() => this.copySuccess = false, 2000);
+    }).catch(err => console.error('Erreur de copie :', err));
+  }
+
+  updateCode() {
+    this.shared = false;
+    // this.router.navigateByUrl('home/note-code');
   }
 }

@@ -2,7 +2,7 @@ main {
   font-family: "Outfit", sans-serif;
   font-weight: 600;
   line-height: 0;
-  background-color: #9E6DEF;
+  background-image: linear-gradient(to bottom right, rgba(183, 135, 245, 1), rgba(116, 62, 228, 1));
   min-height: 100vh;
 }
 
@@ -113,10 +113,11 @@ section.hc-black {
   column-gap: 15px;
 }
 
-.link-container {
+.link {
   display: flex;
   align-items: center;
   column-gap: 8px;
+  cursor: pointer;
 }
 
 .dark .editor-wrap ::ng-deep .ngx-monaco-editor {

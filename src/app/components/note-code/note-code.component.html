@@ -10,12 +10,15 @@
     <div class="section-container">
       <section class="{{selectedTheme.value}}">
         <div class="editor-wrap">
+          <div id="editor">
+
+          </div>
           <ngx-monaco-editor
             style="height: 100%"
             [options]="editorOptions"
             [(ngModel)]="code"
             (onInit)="onEditorInit($event)"
-            (ngModelChange)="shared = false"
+            (ngModelChange)="updateCode()"
           />
         </div>
         <div class="footer-container">
@@ -25,7 +28,7 @@
               <p-overlay [(visible)]="overlaysVisibility.language" [responsive]="{breakpoint: '640px', direction: 'top'}">
                 <ng-template #content let-option>
                   <div class="options-container">
-                    <p-button *ngFor="let language of languages" [label]="language.label" (click)="selectedLanguage = language; overlaysVisibility.language = false;"></p-button>
+                    <p-button *ngFor="let language of languages" [label]="language.label" (click)="update('language', language.value)"></p-button>
                   </div>
                 </ng-template>
               </p-overlay>
@@ -36,18 +39,22 @@
               <p-overlay [(visible)]="overlaysVisibility.theme" [responsive]="{breakpoint: '640px', direction: 'top'}">
                 <ng-template #content let-option>
                   <div class="options-container">
-                    <p-button *ngFor="let theme of themes" [label]="theme.label" (click)="updateTheme(theme.value); overlaysVisibility.theme = false;"></p-button>
+                    <p-button *ngFor="let theme of themes" [label]="theme.label" (click)="update('theme', theme.value)"></p-button>
                   </div>
                 </ng-template>
               </p-overlay>
             </div>
           </div>
           <div class="share-container">
-            <div class="link-container" *ngIf="shared">
-              <img src="assets/images/note-code/link.svg" alt="Link logo">
-              <p class="link-text">.../2fsdkWELPo</p>
+            <div *ngIf="shared">
+              <a class="link" (click)="copyToClipboard()">
+                <img src="assets/images/note-code/link.svg" alt="Link logo">
+                <p class="link-text">.../{{id}}</p>
+              </a>
             </div>
-            <p-button label="Share" [disabled]="shared" (click)="shareCode()"><img src="assets/images/note-code/Share.svg" alt="Share Logo"></p-button>
+            <p-button label="Share" [disabled]="shared" (click)="shareCode()">
+              <img src="assets/images/note-code/Share.svg" alt="Share Logo">
+            </p-button>
           </div>
         </div>
       </section>

@@ -14,7 +14,13 @@ export const routes: Routes = [
     path: 'home/note-code',
     title: 'Note Code',
     component: NoteCodeComponent,
-  }
+  },
+  {
+    path: 'home/note-code/:id',
+    title: 'Note Code',
+    component: NoteCodeComponent,
+  },
+
 ];
 
 @NgModule({
