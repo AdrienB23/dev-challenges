@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import * as monaco from 'monaco-editor';
 
 @Component({
   selector: 'app-note-code',
@@ -7,14 +8,20 @@ import {Component, OnInit} from '@angular/core';
   styleUrl: './note-code.component.css'
 })
 export class NoteCodeComponent implements OnInit {
+  editor: any;
+
   languages = [
     {label: "HTML", value: "html" },
     {label: "CSS", value: "css" },
-    {label: "JS", value: "js" },
+    {label: "JS", value: "javascript" },
+    {label: "TS", value: "typescript" },
+    {label: "JSON", value: "json" },
   ]
   themes = [
-    {label: "Light", value: "light"},
-    {label: "Dark", value: "dark"}
+    {label: "Light", value: "vs"},
+    {label: "VS Dark", value: "vs-dark"},
+    {label: "HC Black", value: "hc-black"},
+    {label: "HC Light", value: "hc-light"},
   ]
 
   selectedLanguage = this.languages[0];
@@ -26,7 +33,8 @@ export class NoteCodeComponent implements OnInit {
   }
 
   editorOptions = {
-    language: this.selectedLanguage.value
+    language: this.selectedLanguage.value,
+    theme: this.selectedTheme.value,
   };
 
   shared=false;
@@ -51,6 +59,11 @@ export class NoteCodeComponent implements OnInit {
 </html>`;
 
   ngOnInit() {
+    monaco.editor.setTheme(this.selectedTheme.value);
+  }
+
+  onEditorInit(editorInstance: any) {
+    this.editor = editorInstance;
   }
 
   toggle(type: string) {
@@ -65,5 +78,12 @@ export class NoteCodeComponent implements OnInit {
 
   shareCode() {
     this.shared = true;
+  }
+
+  updateTheme(theme: string) {
+    this.selectedTheme = this.themes.find(t => t.value === theme) || this.themes[0];
+    if (this.editor) {
+      this.editor.updateOptions({ theme }); // Met à jour le thème dynamiquement
+    }
   }
 }

@@ -8,12 +8,14 @@
       </div>
     </header>
     <div class="section-container">
-      <section>
+      <section class="{{selectedTheme.value}}">
         <div class="editor-wrap">
           <ngx-monaco-editor
             style="height: 100%"
             [options]="editorOptions"
             [(ngModel)]="code"
+            (onInit)="onEditorInit($event)"
+            (ngModelChange)="shared = false"
           />
         </div>
         <div class="footer-container">
@@ -34,7 +36,7 @@
               <p-overlay [(visible)]="overlaysVisibility.theme" [responsive]="{breakpoint: '640px', direction: 'top'}">
                 <ng-template #content let-option>
                   <div class="options-container">
-                    <p-button *ngFor="let theme of themes" [label]="theme.label" (click)="selectedTheme = theme; overlaysVisibility.theme = false;"></p-button>
+                    <p-button *ngFor="let theme of themes" [label]="theme.label" (click)="updateTheme(theme.value); overlaysVisibility.theme = false;"></p-button>
                   </div>
                 </ng-template>
               </p-overlay>
@@ -43,7 +45,7 @@
           <div class="share-container">
             <div class="link-container" *ngIf="shared">
               <img src="assets/images/note-code/link.svg" alt="Link logo">
-              <p class="link-text">.../linkcode</p>
+              <p class="link-text">.../2fsdkWELPo</p>
             </div>
             <p-button label="Share" [disabled]="shared" (click)="shareCode()"><img src="assets/images/note-code/Share.svg" alt="Share Logo"></p-button>
           </div>
