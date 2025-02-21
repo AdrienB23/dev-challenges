@@ -17,3 +17,7 @@
   --light-gray: #CED6E1;
   --blue: #406AFF;
 }
+
+a {
+  text-decoration: none;
+}

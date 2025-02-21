@@ -7,37 +7,48 @@
         <h2>Your Code easily</h2>
       </div>
     </header>
-    <section>
-      <div class="editor-wrap">
-        <ngx-monaco-editor
-          style="height: 100%"
-          [options]="editorOptions"
-          [(ngModel)]="code"
-        />
-      </div>
-      <div class="footer-container">
-        <div class="theme-container">
-          <div class="select-container">
-            <p-select [options]="languages" [(ngModel)]="selectedLanguage" optionLabel="label" optionValue="value"/>
-<!--            <p-button (click)="toggle('language')" [label]="selectedLanguage.label"></p-button>-->
-<!--            <p-overlay [(visible)]="overlaysVisibility.language"  >-->
-<!--              <ng-template #content let-option>-->
-<!--                <div class="options-container">-->
-<!--                  <p-button *ngFor="let language of languages" [label]="language.label"></p-button>-->
-<!--                </div>-->
-<!--              </ng-template>-->
-<!--            </p-overlay>-->
+    <div class="section-container">
+      <section>
+        <div class="editor-wrap">
+          <ngx-monaco-editor
+            style="height: 100%"
+            [options]="editorOptions"
+            [(ngModel)]="code"
+          />
+        </div>
+        <div class="footer-container">
+          <div class="theme-container">
+            <div class="select-container">
+              <p-button (click)="toggle('language')"><p class="button-text">{{selectedLanguage.label}}</p><img src="assets/images/note-code/down%20arrow.svg" alt="Arrow"></p-button>
+              <p-overlay [(visible)]="overlaysVisibility.language" [responsive]="{breakpoint: '640px', direction: 'top'}">
+                <ng-template #content let-option>
+                  <div class="options-container">
+                    <p-button *ngFor="let language of languages" [label]="language.label" (click)="selectedLanguage = language; overlaysVisibility.language = false;"></p-button>
+                  </div>
+                </ng-template>
+              </p-overlay>
+
+            </div>
+            <div class="select-container">
+              <p-button (click)="toggle('theme')"><p class="button-text">{{selectedTheme.label}}</p><img src="assets/images/note-code/down%20arrow.svg" alt="Arrow"></p-button>
+              <p-overlay [(visible)]="overlaysVisibility.theme" [responsive]="{breakpoint: '640px', direction: 'top'}">
+                <ng-template #content let-option>
+                  <div class="options-container">
+                    <p-button *ngFor="let theme of themes" [label]="theme.label" (click)="selectedTheme = theme; overlaysVisibility.theme = false;"></p-button>
+                  </div>
+                </ng-template>
+              </p-overlay>
+            </div>
           </div>
-          <div class="select-container">
-            <select>
-              <option *ngFor="let theme of themes" [value]="theme.value">{{theme.label}}</option>
-            </select>
+          <div class="share-container">
+            <div class="link-container" *ngIf="shared">
+              <img src="assets/images/note-code/link.svg" alt="Link logo">
+              <p class="link-text">.../linkcode</p>
+            </div>
+            <p-button label="Share" [disabled]="shared" (click)="shareCode()"><img src="assets/images/note-code/Share.svg" alt="Share Logo"></p-button>
           </div>
         </div>
-        <div class="share-container">
-          <button><img src="assets/images/note-code/Share.svg" alt="Share Logo">Share</button>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </div>
 </main>

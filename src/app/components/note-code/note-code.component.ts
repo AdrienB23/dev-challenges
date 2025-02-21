@@ -17,7 +17,8 @@ export class NoteCodeComponent implements OnInit {
     {label: "Dark", value: "dark"}
   ]
 
-  selectedLanguage = {label: "HTML", value: "html"};
+  selectedLanguage = this.languages[0];
+  selectedTheme = this.themes[0];
 
   overlaysVisibility = {
     language: false,
@@ -27,6 +28,9 @@ export class NoteCodeComponent implements OnInit {
   editorOptions = {
     language: this.selectedLanguage.value
   };
+
+  shared=false;
+
   code = `<html lang="en">
   <head>
     <title>HTML Sample</title>
@@ -53,7 +57,13 @@ export class NoteCodeComponent implements OnInit {
     if (type === "language") {
       this.overlaysVisibility.language = true;
     }
+    else if (type === "theme") {
+      this.overlaysVisibility.theme = true;
+    }
     console.log(this.overlaysVisibility);
   }
 
+  shareCode() {
+    this.shared = true;
+  }
 }

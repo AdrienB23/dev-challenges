@@ -30,26 +30,41 @@ header {
   row-gap: 25px;
 }
 
+.section-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 section {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 900px;
   border-radius: 10px;
-  padding: 24px 0;
   background-color: var(--white);
   box-shadow: 0 0 25px 25px rgba(0, 0, 0, 0.05);
   row-gap: 100px;
   margin-bottom: 100px;
 }
 
+@media (max-width: 920px) {
+
+  section {
+    width: 100%;
+    margin: 0 20px 0 20px;
+  }
+}
+
 .editor-wrap {
+  margin-top: 24px;
   height: 500px;
 }
 
 .footer-container {
   display: flex;
   justify-content: space-between;
-  margin: 0 18px;
+  align-items: center;
+  margin: 0 18px 10px;
 }
 
 .theme-container {
@@ -63,7 +78,8 @@ section {
   align-items: center;
   background: var(--light-gray);
   border-radius: 20px;
-  padding: 5px 10px;
+  padding: 3px 5px 3px 12px;
+  height: fit-content;
 }
 
 .options-container {
@@ -71,15 +87,47 @@ section {
   flex-direction: column;
   background: var(--light-gray);
   border: solid 1px var(--gray);
-  border-radius: 5px;
-  padding: 5px;
 }
 
-.panel {
-  display: block;
-  background: var(--gray);
-  color: black;
+.options-container ::ng-deep .p-button {
+  justify-content: start;
+  width: 100%;
+  margin: auto;
 }
+
+.options-container ::ng-deep .p-button:hover {
+  background: var(--gray);
+  color: var(--white);
+}
+
+.share-container {
+  display: flex;
+  column-gap: 15px;
+}
+
+.link-container {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.share-container ::ng-deep .p-button  {
+  display: flex;
+  column-gap: 5px;
+  background: var(--blue);
+  color: var(--white);
+  padding: 10px 25px;
+  border-radius: 30px;
+}
+
+.share-container ::ng-deep .p-button:hover {
+  background: var(--blue);
+}
+
+.share-container ::ng-deep .p-button:disabled  {
+  background: var(--gray);
+}
+
 
 /*select {*/
 /*  font-family: "Outfit", serif;*/
@@ -111,4 +159,19 @@ h2 {
   font-size: 40px;
   line-height: 40px;
   font-weight: 600;
+}
+
+.button-text, .options-container ::ng-deep .p-button .p-button-label {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.share-container ::ng-deep .p-button .p-button-label {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.link-text {
+  font-size: 12px;
+  color: var(--gray);
 }
