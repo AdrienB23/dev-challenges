@@ -131,7 +131,10 @@ export class NoteCodeComponent implements OnInit {
   }
 
   copyToClipboard() {
-    const url = `${window.location.origin}/#/home/note-code/${this.id}`;
+    const baseUrl = window.location.origin.includes("github.io")
+      ? `${window.location.origin}/dev-challenges`
+      : window.location.origin;
+    const url = `${baseUrl}/#/home/note-code/${this.id}`;
     navigator.clipboard.writeText(url).then(() => {
       this.copySuccess = true;
       setTimeout(() => this.copySuccess = false, 2000);
