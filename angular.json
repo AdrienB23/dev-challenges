@@ -29,7 +29,7 @@
             },
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "baseHref": "./",
+            "baseHref": "./dev-challenges/",
             "polyfills": [
               "zone.js"
             ],
