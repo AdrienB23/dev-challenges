@@ -24,7 +24,7 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": {
-              "base": "dist/dev-challenges",
+              "base": "dist",
               "browser": ""
             },
             "index": "src/index.html",
