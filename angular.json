@@ -25,6 +25,8 @@
           "options": {
             "outputPath": "dist/dev-challenges",
             "index": "src/index.html",
+            "baseHref": "/dev-challenges/",
+            "deployUrl": "/dev-challenges/",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
