@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import {RouterModule, RouterOutlet} from '@angular/router';
+import {provideRouter, RouterModule, RouterOutlet, withHashLocation} from '@angular/router';
 import { routes } from './app-routing.module';
 import { NoteCodeComponent } from './components/note-code/note-code.component';
 import { HomeComponent } from './components/home/home.component';
@@ -38,6 +38,7 @@ import {SelectModule} from 'primeng/select';
     BrowserAnimationsModule,
   ],
   providers: [
+    provideRouter(routes, withHashLocation()),
     provideMonacoEditor(),
     provideAnimations(),
   ],
