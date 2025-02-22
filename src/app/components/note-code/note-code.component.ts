@@ -5,7 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   selector: 'app-note-code',
   standalone: false,
   templateUrl: './note-code.component.html',
-  styleUrl: './note-code.component.css'
+  styleUrls: ['./note-code.component.css']
 })
 export class NoteCodeComponent implements OnInit {
   editor: any;
@@ -65,9 +65,6 @@ export class NoteCodeComponent implements OnInit {
       let paramId = params.get('id');
       if (paramId) {
         this.id = paramId
-      }
-      if (this.id) {
-        this.shared = true;
         this.loadCode(this.id);
       }
     });
@@ -88,9 +85,9 @@ export class NoteCodeComponent implements OnInit {
 
   shareCode() {
     this.id = this.generateRandomId();
-    this.shared = true;
-    this.router.navigate(['home/note-code', this.id]);
     this.saveCode(this.id, this.code);
+    this.router.navigate(['home/note-code', this.id]);
+    this.shared = true;
   }
 
   saveCode(id: string, code: string) {
@@ -107,6 +104,7 @@ export class NoteCodeComponent implements OnInit {
       this.code = savedCode;
       this.update('language', savedLanguage);
       this.update('theme', savedTheme);
+      this.shared = true;
     }
   }
 
@@ -133,7 +131,7 @@ export class NoteCodeComponent implements OnInit {
   }
 
   copyToClipboard() {
-    const url = `${window.location.origin}/#/home/note-code/${this.id}`;
+    const url = `${window.location.origin}/home/note-code/${this.id}`;
     navigator.clipboard.writeText(url).then(() => {
       this.copySuccess = true;
       setTimeout(() => this.copySuccess = false, 2000);
@@ -142,6 +140,5 @@ export class NoteCodeComponent implements OnInit {
 
   updateCode() {
     this.shared = false;
-    // this.router.navigateByUrl('home/note-code');
   }
 }

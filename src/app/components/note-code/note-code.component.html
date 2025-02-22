@@ -24,7 +24,10 @@
         <div class="footer-container">
           <div class="theme-container">
             <div class="select-container">
-              <p-button (click)="toggle('language')"><p class="button-text">{{selectedLanguage.label}}</p><img src="assets/images/note-code/down%20arrow.svg" alt="Arrow"></p-button>
+              <p-button (click)="toggle('language')">
+                <p class="button-text">{{selectedLanguage.label}}</p>
+                <img src="assets/images/note-code/down%20arrow.svg" alt="Arrow">
+              </p-button>
               <p-overlay [(visible)]="overlaysVisibility.language" [responsive]="{breakpoint: '640px', direction: 'top'}">
                 <ng-template #content let-option>
                   <div class="options-container">
@@ -35,7 +38,10 @@
 
             </div>
             <div class="select-container">
-              <p-button (click)="toggle('theme')"><p class="button-text">{{selectedTheme.label}}</p><img src="assets/images/note-code/down%20arrow.svg" alt="Arrow"></p-button>
+              <p-button (click)="toggle('theme')">
+                <p class="button-text">{{selectedTheme.label}}</p>
+                <img src="assets/images/note-code/down%20arrow.svg" alt="Arrow">
+              </p-button>
               <p-overlay [(visible)]="overlaysVisibility.theme" [responsive]="{breakpoint: '640px', direction: 'top'}">
                 <ng-template #content let-option>
                   <div class="options-container">

@@ -1,6 +1,5 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
-import * as monaco from 'monaco-editor';
 
 (self as any).MonacoEnvironment = {
   getWorkerUrl: function (moduleId: string, label: string) {

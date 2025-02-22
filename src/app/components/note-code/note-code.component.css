@@ -47,20 +47,19 @@ section {
   margin-bottom: 100px;
 }
 
+@media (max-width: 920px) {
+  section {
+    width: 100%;
+    margin: 0 20px 100px 20px;
+  }
+}
+
 section.vs-dark {
   background: rgb(30, 30, 30);
 }
 
 section.hc-black {
   background: rgb(0, 0, 0);
-}
-
-@media (max-width: 920px) {
-
-  section {
-    width: 100%;
-    margin: 0 20px 0 20px;
-  }
 }
 
 .editor-wrap {
@@ -124,6 +123,8 @@ section.hc-black {
   background: var(--dark-gray);
 }
 
+/* Share button */
+
 .share-container ::ng-deep .p-button  {
   display: flex;
   column-gap: 5px;
@@ -140,25 +141,6 @@ section.hc-black {
 .share-container ::ng-deep .p-button:disabled  {
   background: #677489;
 }
-
-
-/*select {*/
-/*  font-family: "Outfit", serif;*/
-/*  font-weight: 500;*/
-/*  font-size: 10px;*/
-/*  border: none;*/
-/*  outline: none;*/
-/*  cursor: pointer;*/
-/*  background-color: var(--light-gray);*/
-/*  color: var(--gray);*/
-/*}*/
-
-/*option {*/
-/*  font-optical-sizing: auto;*/
-/*  font-weight: 600;*/
-/*  font-style: normal;*/
-/*  background: var(--light-gray);*/
-/*}*/
 
 /* Fonts */
 
